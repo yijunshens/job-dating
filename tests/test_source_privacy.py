@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import catalog
 import sync
+from check_source_privacy import check
 
 # Deliberately fictional identifiers: never use production source secrets in tests.
 SOURCE = 'https://fixture-source.feishu.cn/base/FictionalBaseToken?table=FictionalTable&view=FictionalView'
@@ -69,6 +70,25 @@ class SourcePrivacyTests(unittest.TestCase):
         self.assertNotIn(SOURCE, captured)
         self.assertEqual(sync.load_catalog(self.root), initial)
         self.assertNotIn(SOURCE, (self.root/'data/sync-status.json').read_text(encoding='utf-8'))
+
+    def test_publication_guard_catches_source_in_old_history_and_built_files(self):
+        with patch.dict(os.environ, {'RECRUITMENT_SOURCE_URL': SOURCE}):
+            source = catalog.load_source(self.root)
+        def git(*args):
+            return subprocess.run(['git','-c','user.name=Privacy Fixture','-c','user.email=fixture@example.invalid',*args],
+                cwd=self.root,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        git('init','-b','main')
+        (self.root/'data').mkdir()
+        (self.root/'data/catalog.json').write_text('{"metadata":{}}',encoding='utf-8')
+        (self.root/'README.md').write_text(SOURCE,encoding='utf-8')
+        git('add','.');git('commit','-m','Original fixture')
+        (self.root/'README.md').write_text('Sanitized fixture',encoding='utf-8')
+        git('add','.');git('commit','-m','Remove visible reference')
+        self.assertEqual(check(self.root,source),2)
+        with self.assertRaises(ValueError):check(self.root,source,history=True)
+        (self.root/'dist').mkdir()
+        (self.root/'dist/index.html').write_text(source.table,encoding='utf-8')
+        with self.assertRaises(ValueError):check(self.root,source)
 
 
 if __name__ == '__main__': unittest.main()
