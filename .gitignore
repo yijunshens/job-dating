@@ -1,0 +1,12 @@
+private/
+qa/
+dist/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+node_modules/
+data/sync-status.json
+*.sqlite3*
+JobDating-投递记录-*.json

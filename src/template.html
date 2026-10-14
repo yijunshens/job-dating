@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2f5fc">
+  <meta name="description" content="Job Dating 校招雷达：搜索校招机会，筛选城市与届次，按截止日期安排投递。">
+  <title>Job Dating · 校招雷达</title>
+  <style>/* EMBED_STYLES */</style>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6L10 14M10 5H5v14h14v-5"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.8 6.4.9-4.6 4.5 1.1 6.3-5.7-3-5.7 3 1.1-6.3L2.8 9.7l6.4-.9Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5Zm4 3v5c4 3 8 3 12 0v-5m4-3v7"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h8m4 0h4M4 17h3m4 0h9"/><circle cx="14" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 4 8 8-8 8"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#opportunities">跳到招聘列表</a>
+  <section id="browser-help" class="browser-help" role="status"><h2>正在启动 Job Dating 个人版</h2><p>请运行项目中的“启动 Job Dating”脚本，并在浏览器打开本地网址。</p><small id="startup-error">正在载入招聘信息与投递记录…</small></section>
+  <div class="ambient" aria-hidden="true"><div class="ambient-a"></div><div class="ambient-b"></div></div>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Job Dating，回到顶部"><span class="brand-mark"><i></i><i></i><i></i></span><span class="brand-name"><span class="brand-word">Job Dating</span><span class="brand-divider"></span><small>校招雷达</small></span></a>
+      <nav aria-label="主导航"><a href="#opportunities" class="nav-link current">发现机会</a><button class="nav-link" data-mode="favorites">我的收藏<span id="nav-saved" class="tiny-count">0</span></button></nav>
+      <div class="sync-tools"><span id="sync-label">正在载入…</span><button id="sync-now" type="button">同步招聘信息</button></div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="short-line"></span> YOUR NEXT CHAPTER</div>
+          <h1 id="hero-title">找到心动的机会，<br><span>也不错过截止日。</span></h1>
+          <p>把忙乱的秋招，变成有序的下一步。</p>
+          <div class="hero-stats"><span><strong id="total-stat">EMBED_TOTAL_COUNT</strong> 条校招信息</span><i></i><button data-mode="soon"><span class="pulse-dot"></span><strong id="soon-stat">EMBED_SOON_COUNT</strong> 条即将截止 <svg class="icon"><use href="#i-arrow"/></svg></button></div>
+        </div>
+        <div class="water-art" aria-hidden="true">
+          <svg viewBox="0 0 650 360" class="water-svg">
+            <defs>
+              <radialGradient id="orb-base" cx="34%" cy="26%" r="82%"><stop stop-color="#ffffff" stop-opacity=".95"/><stop offset=".25" stop-color="#e3e9fc" stop-opacity=".65"/><stop offset=".5" stop-color="#a8c6f0" stop-opacity=".45"/><stop offset=".7" stop-color="#d6c5fa" stop-opacity=".55"/><stop offset=".84" stop-color="#7187dc" stop-opacity=".52"/><stop offset="1" stop-color="#d3f2f5" stop-opacity=".8"/></radialGradient>
+              <linearGradient id="orb-line" x1="0" y1="0" x2="1" y2="1"><stop stop-color="white"/><stop offset=".5" stop-color="#899ed7" stop-opacity=".6"/><stop offset="1" stop-color="white" stop-opacity=".7"/></linearGradient>
+              <linearGradient id="ripple-color"><stop stop-color="#94abdc" stop-opacity="0"/><stop offset=".3" stop-color="#809fdb" stop-opacity=".45"/><stop offset=".7" stop-color="#a19add" stop-opacity=".5"/><stop offset="1" stop-color="#9ebbd7" stop-opacity="0"/></linearGradient>
+              <radialGradient id="orb-shine"><stop stop-color="white" stop-opacity=".95"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient>
+              <filter id="soft-blur"><feGaussianBlur stdDeviation="8"/></filter>
+              <clipPath id="orb-clip"><circle cx="353" cy="155" r="113"/></clipPath>
+            </defs>
+            <g class="ripples" fill="none" stroke="url(#ripple-color)">
+              <ellipse cx="351" cy="290" rx="125" ry="22"/><ellipse cx="351" cy="290" rx="161" ry="29"/><ellipse cx="351" cy="290" rx="207" ry="38"/><ellipse cx="351" cy="290" rx="260" ry="49"/><ellipse cx="351" cy="290" rx="321" ry="62"/>
+            </g>
+            <ellipse cx="353" cy="284" rx="70" ry="10" fill="#8399d6" opacity=".16" filter="url(#soft-blur)"/>
+            <g class="orb-float">
+              <circle cx="353" cy="155" r="113" fill="url(#orb-base)" stroke="white" stroke-opacity=".75" stroke-width="1.5"/>
+              <g clip-path="url(#orb-clip)" fill="none" stroke="url(#orb-line)" stroke-width=".9">
+                <ellipse cx="353" cy="155" rx="39" ry="113" transform="rotate(-30 353 155)"/><ellipse cx="353" cy="155" rx="76" ry="113" transform="rotate(-30 353 155)"/><ellipse cx="353" cy="155" rx="99" ry="113" transform="rotate(-30 353 155)"/>
+                <ellipse cx="353" cy="104" rx="102" ry="22" transform="rotate(-30 353 155)"/><ellipse cx="353" cy="139" rx="112" ry="26" transform="rotate(-30 353 155)"/><ellipse cx="353" cy="177" rx="110" ry="26" transform="rotate(-30 353 155)"/><ellipse cx="353" cy="214" rx="96" ry="20" transform="rotate(-30 353 155)"/>
+                <path d="M228 180Q338 54 458 96M235 219Q346 93 475 135M260 250Q361 136 467 177" stroke="white" stroke-opacity=".6" stroke-width="7"/>
+              </g>
+              <ellipse cx="304" cy="87" rx="59" ry="33" fill="url(#orb-shine)" transform="rotate(-28 304 87)"/>
+              <ellipse cx="353" cy="155" rx="155" ry="44" transform="rotate(-30 353 155)" fill="none" stroke="url(#orb-line)" stroke-width="1.3"/>
+              <circle cx="229" cy="230" r="5" fill="#7685c6"/><circle cx="483" cy="83" r="3.5" fill="#bac2e9"/>
+            </g>
+            <g class="art-sparkles" fill="#8f9dbe"><circle cx="190" cy="108" r="2"/><circle cx="518" cy="180" r="2.5"/><circle cx="449" cy="40" r="1.5"/><path d="M173 170v12m-6-6h12M524 119v8m-4-4h8" stroke="#9aa6cc" stroke-width="1"/></g>
+          </svg>
+          <div class="art-label"><span></span> 每一步，都离理想更近一点</div>
+        </div>
+      </section>
+
+      <section class="search-panel glass" aria-label="搜索与筛选">
+        <form id="search-form" role="search">
+          <svg class="icon search-icon"><use href="#i-search"/></svg>
+          <label class="sr-only" for="search">搜索公司、岗位、专业或城市</label>
+          <input id="search" type="search" placeholder="搜索公司、岗位、专业或城市…" autocomplete="off" maxlength="160">
+          <kbd aria-hidden="true">/</kbd><button class="primary search-submit" type="submit">寻找机会<svg class="icon"><use href="#i-arrow"/></svg></button>
+        </form>
+        <div class="filter-row">
+          <div class="filter-field"><svg class="icon"><use href="#i-pin"/></svg><label for="city">城市</label><select id="city" data-filter="city"><option value="">全部城市</option></select></div>
+          <span class="filter-divider"></span>
+          <div class="filter-field"><svg class="icon"><use href="#i-cap"/></svg><label for="cohort">届次</label><select id="cohort" data-filter="cohort"><option value="">全部届次</option></select></div>
+          <button id="advanced-toggle" class="quiet-button more-filters" aria-expanded="false" aria-controls="advanced-filters"><svg class="icon"><use href="#i-sliders"/></svg>更多筛选<span id="advanced-count"></span></button>
+          <label class="switch-label"><input id="hide-expired" type="checkbox" checked><span class="switch-track"></span>隐藏已截止</label>
+        </div>
+        <div id="advanced-filters" class="advanced-filters" hidden>
+          <div class="advanced-field"><label for="degree">学历要求</label><select id="degree" data-filter="degree"><option value="">全部学历</option><option>大专</option><option>本科</option><option>硕士</option><option>博士</option></select></div>
+          <div class="advanced-field"><label for="industry">行业方向</label><select id="industry" data-filter="industry"><option value="">全部行业</option></select></div>
+          <div class="advanced-field"><label for="ownership">企业性质</label><select id="ownership" data-filter="ownership"><option value="">全部性质</option></select></div>
+          <div class="advanced-field"><label for="category">招聘类型</label><select id="category" data-filter="category"><option value="">全部类型</option></select></div>
+        </div>
+        <div class="filter-chips" id="filter-chips" hidden></div>
+      </section>
+
+      <section id="opportunities" class="opportunities" aria-label="招聘机会">
+        <div class="freshness-bar" role="group" aria-label="按首次发现日期筛选"><span class="freshness-label" title="从本地基线之后开始记录首次发现时间；不把原表修改当成新增。">新机会</span><button class="active" data-added="0" aria-pressed="true">全部时间</button><button data-added="1" aria-pressed="false">当日新增<small id="added-1">0</small></button><button data-added="3" aria-pressed="false">3 天内新增<small id="added-3">0</small></button><button data-added="7" aria-pressed="false">一周内新增<small id="added-7">0</small></button></div>
+        <div class="results-toolbar">
+          <div class="view-tabs" role="group" aria-label="机会分类"><button class="active" data-mode="all" aria-pressed="true">全部机会</button><button data-mode="soon" aria-pressed="false">7 日内截止<span id="tab-soon">0</span></button><button data-mode="favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg>已收藏<span id="tab-saved">0</span></button><button data-mode="applied" aria-pressed="false">投递记录<span id="tab-applied">0</span></button></div>
+          <div class="sort-label"><svg class="icon"><use href="#i-sliders"/></svg><label for="sort" class="sr-only">排序方式</label><select id="sort"><option value="deadline">截止日期 · 最近优先</option><option value="latest">信息更新 · 最新优先</option></select></div>
+        </div>
+        <div class="results-caption"><p id="result-summary" role="status" aria-live="polite">正在整理机会…</p><span id="order-note">明确日期优先 · 未明确日期置后</span></div>
+        <div class="workspace">
+          <div class="results-main"><div class="job-grid" id="job-list"></div><div id="empty-state" class="empty-state glass" hidden><div class="empty-orbit"><svg class="icon"><use href="#i-search"/></svg></div><h2 id="empty-title">还没有找到对应机会</h2><p id="empty-text">换一个关键词，或放宽筛选条件试试。</p><button id="empty-reset" class="primary">查看全部机会<svg class="icon"><use href="#i-arrow"/></svg></button></div><nav id="pagination" class="pagination" aria-label="招聘结果分页"></nav></div>
+          <aside class="deadline-sidebar" aria-label="截止日速览">
+            <section class="calendar-card glass"><div class="sidebar-eyebrow">MAKE IT IN TIME<span class="status-dot"></span></div><h2>把握投递节奏<span id="calendar-month"></span></h2><p class="sidebar-description">点击日期，查看当天截止的机会</p><div class="date-list" id="date-list"></div><div class="calendar-footer"><svg class="icon"><use href="#i-clock"/></svg><span>日期按北京时间计算</span></div></section>
+            <section class="undated-card"><span class="small-orbit" aria-hidden="true"></span><h3>心动，也可以先收藏。</h3><p><strong id="unknown-count">—</strong> 条信息未明确截止日<br>投递前，记得再看看原始公告。</p><button class="text-link" data-mode="undated">查看日期未明确的机会<svg class="icon"><use href="#i-arrow"/></svg></button></section>
+            <p class="local-note"><svg class="icon"><use href="#i-check"/></svg>投递记录自动保存 · 修改后请留意保存状态</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <section class="personal-footer"><span id="storage-mode">记录自动保存</span><div class="backup-tools"><button id="backup-export">备份投递记录</button><button id="backup-import">恢复缺失记录</button><input id="backup-file" type="file" accept=".json" hidden><span id="backup-state" role="status"></span></div></section>
+    <footer class="site-footer"><span class="footer-brand">Job Dating <span>愿每一次出发，都有回响。</span></span></footer>
+  </div>
+
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title"><div class="dialog-top"><span class="eyebrow">OPPORTUNITY DETAILS</span><button class="icon-button close-dialog" aria-label="关闭详情"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="detail-scroll" id="detail-content"></div><div class="detail-actions" id="detail-actions"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript-note">请启用浏览器 JavaScript，以使用搜索、筛选和截止日期排序。</div></noscript>
+  <script>/* EMBED_PERSONAL */</script>
+  <script>/* EMBED_CORE */</script>
+  <script>/* EMBED_PICKERS */</script>
+  <script>/* EMBED_APP */</script>
+</body>
+</html>

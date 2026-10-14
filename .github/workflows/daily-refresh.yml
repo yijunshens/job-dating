@@ -1,0 +1,65 @@
+name: Refresh recruitment data
+on:
+  schedule:
+    - cron: '17 1 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: job-dating-pages
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Sync the public source
+        env:
+          RECRUITMENT_SOURCE_URL: ${{ secrets.RECRUITMENT_SOURCE_URL }}
+        run: python scripts/sync.py
+      - name: Check data logic
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Check source confidentiality before committing
+        env:
+          RECRUITMENT_SOURCE_URL: ${{ secrets.RECRUITMENT_SOURCE_URL }}
+        run: python scripts/check_source_privacy.py --history
+      - name: Save catalog history in Git
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh recruitment catalog'
+            git push
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/configure-pages@v5
+      - run: node build.cjs
+      - name: Check build confidentiality
+        env:
+          RECRUITMENT_SOURCE_URL: ${{ secrets.RECRUITMENT_SOURCE_URL }}
+        run: python scripts/check_source_privacy.py --history
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
